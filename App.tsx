@@ -1,21 +1,16 @@
-import { StatusBar } from 'expo-status-bar';
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StatusBar } from "expo-status-bar";
+import React from "react";
+import { Provider } from "mobx-react";
+import RootStore from "./src/stores/RootStore";
+import RootNavigation from "./src/navigations/RootNavigation";
 
-export default function App() {
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
-  );
+export default class App extends React.Component {
+  render() {
+    return (
+      <Provider store={new RootStore()}>
+        <StatusBar style="auto" />
+        <RootNavigation />
+      </Provider>
+    );
+  }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
