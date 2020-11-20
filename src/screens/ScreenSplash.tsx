@@ -1,6 +1,6 @@
 import React from "react";
-import SplashScreen from "expo-splash-screen";
 import { View, Text, StyleSheet } from "react-native";
+import * as SplashScreen from "expo-splash-screen";
 
 interface Props {}
 interface States {
@@ -13,27 +13,28 @@ export default class ScreenSplash extends React.Component<Props, States> {
   };
 
   async componentDidMount() {
-    await SplashScreen.preventAutoHideAsync();
+    try {
+      await SplashScreen.preventAutoHideAsync();
+    } catch (err) {
+      console.error(err);
+    }
     this.prepareResource();
   }
 
   render() {
-    if (!this.state.appReady)
-      return (
-        <View style={styles.container}>
-          <Text>Hi Splash!</Text>
-        </View>
-      );
-
-    //TODO : navigate
+    return (
+      <View style={styles.container}>
+        <Text>Hi Splash!</Text>
+      </View>
+    );
   }
 
   prepareResource = async () => {
     //Prepare your resourses
-
-    setTimeout(() => {
-      this.setState({ appReady: true });
-    }, 2000);
+    this.setState({ appReady: true }, async () => {
+      await SplashScreen.hideAsync();
+      this.props.navigation.navigate("Tab");
+    });
   };
 }
 

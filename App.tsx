@@ -3,6 +3,7 @@ import React from "react";
 import { Provider } from "mobx-react";
 import RootStore from "./src/stores/RootStore";
 import RootNavigation from "./src/navigations/RootNavigation";
+import * as SplashScreen from "expo-splash-screen";
 
 export default class App extends React.Component {
   render() {
