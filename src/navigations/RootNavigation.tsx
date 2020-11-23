@@ -16,7 +16,11 @@ const RootNavigation = () => {
     <NavigationContainer>
       <RootStack.Navigator screenOptions={screenOptions}>
         <RootStack.Screen name="Splash" component={ScreenSplash} />
-        <RootStack.Screen name="Tab" component={TabNavigation} />
+        <RootStack.Screen
+          name="Tab"
+          component={TabNavigation}
+          options={{ headerShown: false }}
+        />
       </RootStack.Navigator>
     </NavigationContainer>
   );
