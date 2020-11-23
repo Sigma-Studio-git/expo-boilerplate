@@ -1,14 +1,18 @@
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
+import { StackNavigationWithStoreProps } from "../constants/types";
 import * as SplashScreen from "expo-splash-screen";
+import NavigationService from "../navigations/NavigationService";
 
-interface Props {}
-interface States {
+interface State {
   appReady: boolean;
 }
 
-export default class ScreenSplash extends React.Component<Props, States> {
-  state = {
+export default class ScreenSplash extends React.Component<
+  StackNavigationWithStoreProps<"Splash">,
+  State
+> {
+  state: State = {
     appReady: false,
   };
 
@@ -33,7 +37,7 @@ export default class ScreenSplash extends React.Component<Props, States> {
     //Prepare your resourses
     this.setState({ appReady: true }, async () => {
       await SplashScreen.hideAsync();
-      this.props.navigation.navigate("Tab");
+      NavigationService.replace(this.props.navigation, "Tab");
     });
   };
 }

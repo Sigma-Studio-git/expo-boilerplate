@@ -1,14 +1,19 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+  BottomTabBarOptions,
+  createBottomTabNavigator,
+} from "@react-navigation/bottom-tabs";
 import { TabParams } from "../constants/types";
 import { ScreenTab1, ScreenTab2, ScreenTab3, ScreenTab4 } from "../screens";
 import { Entypo, Ionicons, AntDesign, Feather } from "@expo/vector-icons";
+import { Color } from "../constants/color";
 
 const Tab = createBottomTabNavigator<TabParams>();
+const tabBarOptions: BottomTabBarOptions = { activeTintColor: Color.primary };
 
 const TabNavigation = () => {
   return (
-    <Tab.Navigator>
+    <Tab.Navigator tabBarOptions={tabBarOptions}>
       <Tab.Screen
         name="Tab1"
         component={ScreenTab1}
